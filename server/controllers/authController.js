@@ -1,14 +1,14 @@
-const signup_get=(req, res)=>{
+const signupGet=(req, res)=>{
     res.render("signup")
 }
-const signup_post=(req, res)=>{
-    res.send("signup")
+const signupPost=(req, res)=>{
+
 }
 
-const login_get =(req, res)=>{
+const loginGet =(req, res)=>{
     res.render("login")
 }
-const login_post =(req, res)=>{
+const loginPost =(req, res)=>{
      res.send("login")
 }
-module.exports={signup_get, signup_post,login_get,login_post}
+module.exports={signupGet, signupPost,loginGet,loginPost}

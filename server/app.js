@@ -6,7 +6,7 @@ const userRoutes=require('./routes/authRoutes')
 dotenv.config()
 
 const app=express()
-app.use(express.static('public'))
+//app.use(express.static('public'))
 app.use(express.json())
 
 const dbURI = process.env.dbURI

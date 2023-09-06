@@ -16,6 +16,6 @@ mongoose.connect(dbURI)
 
 app.use('/',userRoutes)
 
-app.listen(3000 , 'localhost',()=>{
+app.listen(3001 , 'localhost',()=>{
     console.log("listening the local host")
 })

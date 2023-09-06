@@ -1,13 +1,16 @@
 const User = require("../models/user");
 
+const handleErrors = (err)=>{
+  console.log(err.message , err.code)
+}
+
 const signupGet = (req, res) => {
   res.render("signup");
 };
 const signupPost = (req, res) => {
-    const{fullName,username,password}=req.body
+    const{email,password}=req.body
   const user = new User({
-    fullName:fullName,
-    username:username,
+    email:email,
     password:password,
   });
   user.save()
@@ -15,7 +18,6 @@ const signupPost = (req, res) => {
       res.status(201).json(result);
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({ error: "Internal Server Error" });
     });
 };

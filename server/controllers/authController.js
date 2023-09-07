@@ -17,22 +17,22 @@ const handleErrors = (err)=>{
   return errors
 }
 
-
 const signupGet = (req, res) => {
   res.render("signup");
 };
+
 const signupPost = async (req, res) => {
   try{
     const{email,password}=req.body
     const user = new User({email, password});
-     await user.save()
+    await user.save()
     res.status(201).json(user)
   }
   catch(err){
     const error = handleErrors(err)
     res.status(400).json({error})
-  }
 
+  }
 }
 
 const loginGet = (req, res) => {

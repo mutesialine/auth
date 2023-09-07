@@ -5,8 +5,22 @@ import { useForm } from "react-hook-form"
     handleSubmit,
   } = useForm()
 
-  const handleData =(data)=>{
-    console.log(data)
+  const handleData = async(data)=>{
+    try{
+      const res = await fetch('http://localhost:3000/signup',{
+        method:"POST",
+        body:JSON.stringify(data),
+        headers:{'content-type':'application/json'}
+      })
+      if (res.ok) {
+        console.log("Signup successful");
+      } else {
+        console.log("Signup failed");
+      }
+    }
+    catch(err){
+      console.log(err)
+    }
   }
   return (
    <form  onSubmit={handleSubmit(handleData)} className="w-1/2 m-auto bg-white shadow-md p-12 mt-32 rounded-lg">

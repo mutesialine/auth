@@ -10,7 +10,7 @@ export default function loginForm  ()  {
     <label>Password</label>
     <input type='password' placeholder='enter the password' name="password" required className="p-4 rounded-lg border outline-none"/>
     </div>
-    <button className="px-8 py-3 bg-green-500 rounded-full mt-6 cursor-pointer">Login Up</button>
+    <button className="px-8 py-3 bg-green-500 rounded-full mt-6 cursor-pointer">Login</button>
    </form>
   )
 }

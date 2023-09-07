@@ -1,13 +1,13 @@
 
 import  Navbar  from './components/Navbar'
-import LoginForm from './components/form/loginForm'
+import Signup from './components/form/SignupForm'
 
 export default function App() {
 
   return (
-  <div>
+  <div className='max-w-7xl mx-auto w-full'>
   <Navbar />
-  <LoginForm />
+  <Signup/>
   </div>
   )
 }

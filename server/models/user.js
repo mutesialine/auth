@@ -9,12 +9,12 @@ const userSchema= new Schema({
         required:[true, "please enter your email"],
         unique:true,
         lowercase:true,
-        validate:[(isEmail),"please enter valid email"]
+        validate:[(isEmail),"please enter the valid email"]
     },
     password:{
         type:String,
         required:[true,"please enter the password"],
-        minLength:[6,"Minimun password length is 6 characters"]
+        minLength:[6," The minimun password length is 6 characters"]
     }
 }, {timeStamps:true})
 

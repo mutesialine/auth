@@ -30,7 +30,7 @@ const signupPost = async (req, res) => {
   }
   catch(err){
     const error = handleErrors(err)
-    res.status(500).json({error})
+    res.status(400).json({error})
   }
 
 }

@@ -1,9 +1,11 @@
+import { useState } from "react"
 import { useForm } from "react-hook-form"
  export default function Signup (){
   const {
     register,
     handleSubmit,
   } = useForm()
+  const [message, setMessage] = useState("")
 
   const handleData = async(data)=>{
     try{
@@ -11,21 +13,28 @@ import { useForm } from "react-hook-form"
         method:"POST",
         body:JSON.stringify(data),
         headers:{'content-type':'application/json'}
+        
       })
-      if (res.ok) {
-        console.log("Signup successful");
-      } else {
-        console.log("Signup failed");
+      const userData =await res.json()
+      console.log(userData,"=======")
+      if(res.ok){
+        setMessage("Account created successfully")
       }
-    }
+      else{
+        setMessage(userData.error.email || "signup failed")
+      }
+      }
+  
     catch(err){
       console.log(err)
     }
   }
   return (
    <form  onSubmit={handleSubmit(handleData)} className="w-1/2 m-auto bg-white shadow-md p-12 mt-32 rounded-lg">
+  
     <h2 className='text-4xl font-bold'>Sign up</h2>
     <div className="flex flex-col gap-2 pt-8">
+    {message && <label className={`${message === "Account created successfully" ? "text-green-600" : "text-red-500"}`}>{message}</label>}
     <label>Email</label>
     <input type='email' placeholder='enter the email' {...register("email")} name="email" required className="p-4 rounded-lg border outline-none"/>
     </div>

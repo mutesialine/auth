@@ -2,16 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function Signup() {
-  const { register, handleSubmit } = useForm();
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { register, handleSubmit,formState: { errors }, reset  } = useForm();
   const [message, setMessage] = useState("");
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(({ ...formData, [name]: value }));
-  };
 
   const handleData = async (data) => {
+    console.log("hellooo")
     try {
       const res = await fetch("http://localhost:3000/signup", {
         method: "POST",
@@ -19,13 +15,16 @@ export default function Signup() {
         headers: { "content-type": "application/json" },
       });
       const userData = await res.json();
+      console.log(userData,"hereee")
       if (res.ok) {
         setMessage("Account created successfully");
+        reset()
       }
        else {
         setMessage(userData.error.email);
       }
-    } catch (err) {
+    } 
+    catch (err) {
       console.log(err);
     }
   };
@@ -54,8 +53,10 @@ export default function Signup() {
           {...register("email")}
           name="email"
           required
-          className="p-4 rounded-lg border outline-none"
-          onChange={handleInputChange}
+          className={`p-4 rounded-lg border outline-none ${
+            errors.password ? "border-red-500" : ""
+          }`}
+
         />
       </div>
       <div className="flex flex-col gap-2 pt-2">
@@ -66,8 +67,9 @@ export default function Signup() {
           {...register("password")}
           name="password"
           required
-          className="p-4 rounded-lg border outline-none"
-          onChange={handleInputChange}
+          className={`p-4 rounded-lg border outline-none ${
+            errors.email ? "border-red-500" : ""
+          }`}
         />
       </div>
       <button

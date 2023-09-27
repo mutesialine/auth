@@ -15,11 +15,11 @@ export default function Signup() {
       });
       const userData = await res.json();
       if (res.ok) {
-        setMessage("Account created successfully");
+        setMessage("successful logged in");
         reset()
       }
        else {
-        setMessage(userData.error.email);
+        setMessage(userData.error);
       }
     } 
     catch (err) {
@@ -36,7 +36,7 @@ export default function Signup() {
         {message && (
           <label
             className={`${
-              message === "Account created successfully"
+              message === "successful logged in"
                 ? "text-green-600"
                 : "text-red-500"
             }`}
@@ -72,7 +72,7 @@ export default function Signup() {
       </div>
       <button
         type="submit"
-        className="px-8 py-3 bg-green-500 rounded-full mt-6 cursor-pointer"
+        className="px-8 py-3 bg-yellow-700 text-white rounded-full mt-6 cursor-pointer"
       >
         Login
       </button>

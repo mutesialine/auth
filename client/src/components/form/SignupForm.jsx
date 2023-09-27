@@ -7,7 +7,6 @@ export default function Signup() {
 
 
   const handleData = async (data) => {
-    console.log("hellooo")
     try {
       const res = await fetch("http://localhost:3000/signup", {
         method: "POST",
@@ -15,7 +14,6 @@ export default function Signup() {
         headers: { "content-type": "application/json" },
       });
       const userData = await res.json();
-      console.log(userData,"hereee")
       if (res.ok) {
         setMessage("Account created successfully");
         reset()
@@ -74,7 +72,7 @@ export default function Signup() {
       </div>
       <button
         type="submit"
-        className="px-8 py-3 bg-green-500 rounded-full mt-6 cursor-pointer"
+        className="px-8 py-3 bg-yellow-700 text-white rounded-full mt-6 cursor-pointer"
       >
         Sign Up
       </button>

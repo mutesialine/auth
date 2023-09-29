@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignupForm from "./components/form/SignupForm";
-import LoginForm from "./components/form/LoginForm";
+import SignupForm from "./pages/SignupForm";
+import LoginForm from "./util/LoginForm";
 import Home from "./pages/Home";
 import Tote from "./pages/Tote";
 

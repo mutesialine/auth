@@ -1,28 +1,34 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export default function Signup() {
-  const { register, handleSubmit,formState: { errors }, reset  } = useForm();
+export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
   const [message, setMessage] = useState("");
-
 
   const handleData = async (data) => {
     try {
       const res = await fetch("http://localhost:3000/login", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+        }),
         headers: { "content-type": "application/json" },
       });
       const userData = await res.json();
-      if (res.ok) {
+      if (userData.user) {
+        localStorage.setItem('token', userData.user)
         setMessage("successful logged in");
-        reset()
-      }
-       else {
+        window.location.href="/tote"
+        reset();
+      } else {
         setMessage(userData.error);
       }
-    } 
-    catch (err) {
+    } catch (err) {
       console.log(err);
     }
   };
@@ -54,7 +60,6 @@ export default function Signup() {
           className={`p-4 rounded-lg border outline-none ${
             errors.password ? "border-red-500" : ""
           }`}
-
         />
       </div>
       <div className="flex flex-col gap-2 pt-2">
@@ -79,5 +84,3 @@ export default function Signup() {
     </form>
   );
 }
-
-

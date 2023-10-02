@@ -28,10 +28,11 @@ export function useIsAuthenticated() {
 
   useEffect(() => {
     if (token && location.pathname === "/tote") {
+      setIsLoggedIn(true);
+    } else {
       setIsLoggedIn(false);
       navigate("/login");
-    } else {
-      setIsLoggedIn(true);
+      
     }
   }, [token, location]);
   return { isLoggedin };

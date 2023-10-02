@@ -22,7 +22,6 @@ export default function Login() {
         headers: { "content-type": "application/json" },
       });
       const userData = await res.json();
-      // console(userData)
       if (userData.user) {
         localStorage.setItem("token", userData.user);
         setMessage("successful logged in");

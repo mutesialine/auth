@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
   { timeStamps: true }
 );
 
-// pre hook helps to capture data before being saved to the databse
+
 userSchema.pre("save", async function (next) {
   console.log("user about to be created", this);
   const salt = await bcrypt.genSalt();
@@ -28,7 +28,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-//static method to login user
+
 userSchema.statics.login = async function (email, password) {
   const user = await this.findOne({ email });
   if (user) {

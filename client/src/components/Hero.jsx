@@ -1,31 +1,6 @@
 import { Link } from "react-router-dom";
 
 export default function Hero() {
-  // const [user, setUser] = useState(null);
-
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:3000/user");
-  //     console.log(response.json().email)
-  //     console.log(response,"hereee")
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setUser(data.user);
-  //     } else {
-  //       console.error(`Error: ${response.status} - ${response.statusText}`);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
-  // console.log(user,"okaaaaa")
-  // if (!user)
-  //   return <Redirect to="/login" />;
 
   return (
     <div className="flex gap-x-12 text-center  w-full pt-32">

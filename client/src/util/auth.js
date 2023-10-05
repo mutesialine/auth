@@ -1,39 +1,36 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-// import jwt from "jsonwebtoken";
+import { useNavigate } from "react-router-dom";
 
-export const IsAuthenticated = () => {
-  const navigate = useNavigate();
+const isAuthenticated = () => {
   const token = localStorage.getItem("token");
   if (token) {
-    return navigate("/login");
+    return token;
   }
-  // return redirect("/login");
   return null;
 };
 
-// export const useAuthProtection = () => {
-//   if (!isAuthenticated()) {
-//     // console.log(redirect, "redirect redirect red");
-//     return redirect("/login");
-//   }
-//   // return isAuthenticated();
-// };
-export function useIsAuthenticated() {
-  const [isLoggedin, setIsLoggedIn] = useState(false);
-  const location = useLocation();
+export const useAuthProtection = () => {
   const navigate = useNavigate();
+  if (!isAuthenticated()) {
+    return navigate("/login");
+  }
+  return isAuthenticated();
+};
 
-  const token = localStorage.getItem("token");
+// export function useIsAuthenticated() {
+//   const [isLoggedin, setIsLoggedIn] = useState(false);
+//   const location = useLocation();
+//   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (token && location.pathname === "/tote") {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-      navigate("/login");
-      
-    }
-  }, [token, location]);
-  return { isLoggedin };
-}
+//   const token = localStorage.getItem("token");
+
+//   useEffect(() => {
+//     if (token && location.pathname === "/tote") {
+//       setIsLoggedIn(true);
+//     } else {
+//       setIsLoggedIn(false);
+//       navigate("/login");
+
+//     }
+//   }, [token, location]);
+//   return { isLoggedin };
+// }

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -23,11 +23,11 @@ export default function Signup() {
         headers: { "content-type": "application/json" },
       });
       const userData = await res.json();
-      console.log(userData)
-      if (userData.status=="ok") {
-        setMessage('Account created successfully')
+      if (userData) {
+        setMessage("Account created successfully");
+        localStorage.setItem("token", JSON.stringify(userData.user));
+        navigate("/");
         // localStorage.setItem("token", userData.user);
-        // navigate("/tote");
       } else {
         setMessage(userData.error.email);
       }

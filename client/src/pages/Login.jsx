@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 export default function Login() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -11,19 +11,6 @@ export default function Login() {
     reset,
   } = useForm();
   const [message, setMessage] = useState("");
-  // const [logedInUser, setLoggedinUser] = useState(null);
-  // const handleUserAction = (status, data) => {
-  //   switch (status) {
-  //     case "Login":
-  //       setLoggedinUser(data);
-  //       break;
-  //     case "LOGOUT":
-  //       setLoggedinUser(null);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
 
   const handleData = async (data) => {
     try {
@@ -35,11 +22,10 @@ export default function Login() {
         headers: { "content-type": "application/json" },
       });
       const userData = await res.json();
-      console.log(res);
       if (userData) {
         localStorage.setItem("token", JSON.stringify(userData.user));
         setMessage("successful logged in");
-        // navigate("/tote");
+        navigate("/tote");
         reset();
       } else {
         setMessage(userData.error);

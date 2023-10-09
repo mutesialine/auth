@@ -22,10 +22,15 @@ export default function Tote() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-2 text-black">
-      {data.map((el) => (
-        <Totecard {...el} key={el._id} />
-      ))}
+    <div className="space-y-4 pt-6">
+      <a href="/" className="text-4xl">
+        A
+      </a>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-2 text-black">
+        {data.map((el) => (
+          <Totecard {...el} key={el._id} />
+        ))}
+      </div>
     </div>
   );
 }
